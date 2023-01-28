@@ -61,9 +61,8 @@
 				ADB689522326708D006D4E2B /* AppDelegate.swift */,
 				ADB689542326708D006D4E2B /* SceneDelegate.swift */,
 				C0CCDD3F2985C8240005F26E /* Controllers */,
-				ADB689582326708D006D4E2B /* Main.storyboard */,
+				C0CCDD422985C9420005F26E /* Views */,
 				ADB6895B2326708E006D4E2B /* Assets.xcassets */,
-				ADB6895D2326708E006D4E2B /* LaunchScreen.storyboard */,
 				ADB689602326708E006D4E2B /* Info.plist */,
 			);
 			path = Tipsy;
@@ -76,6 +75,15 @@
 				C0CCDD402985C83C0005F26E /* ResultsViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C0CCDD422985C9420005F26E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ADB689582326708D006D4E2B /* Main.storyboard */,
+				ADB6895D2326708E006D4E2B /* LaunchScreen.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

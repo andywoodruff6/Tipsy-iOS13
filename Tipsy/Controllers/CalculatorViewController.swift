@@ -12,7 +12,9 @@ import UIKit
 class CalculatorViewController: UIViewController {
     
     var numberOfPartyMembers: Float = 0
-    var tipPct: Float?
+    var tipPct: Float = 0
+    var billValue: Float = 0
+    var totalBill: Float = 0
     
     @IBOutlet weak var billTextField: UITextField!
     @IBOutlet weak var zeroPctButton: UIButton!
@@ -27,12 +29,11 @@ class CalculatorViewController: UIViewController {
         
         sender.isSelected = true
         
-        var title: String = sender.currentTitle!
-        var trimmedTitle = title.dropLast(1)
-        var trimmedTitleToNumber: Float = Float(trimmedTitle) ?? 0.0
-        var convertToPct = (trimmedTitleToNumber / 100)
+        let title: String = sender.currentTitle!
+        let trimmedTitle = title.dropLast(1)
+        let trimmedTitleToNumber: Float = Float(trimmedTitle) ?? 0.0
+        let convertToPct = (trimmedTitleToNumber / 100)
         tipPct = convertToPct
-//        print(convertToPct)
         billTextField.endEditing(true)
     }
     
@@ -42,12 +43,23 @@ class CalculatorViewController: UIViewController {
         billTextField.endEditing(true)
     }
     @IBAction func calculatePressed(_ sender: UIButton) {
-        print(numberOfPartyMembers)
-        let billValue = Float(billTextField.text ?? "0.0")
-        let totalBill = (billValue! * tipPct!) + billValue!
+        if billTextField.text != nil {
+            billValue = Float(billTextField.text!) ?? 0.0
+        }
+        totalBill = (billValue * tipPct) + billValue
         
         let billShare = totalBill / numberOfPartyMembers
         print(billShare)
+        
+        self.performSegue(withIdentifier: "goToResult", sender: self)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResult"{
+            let destinationVC = segue.destination as! ResultsViewController
+            destinationVC.billTotalLabel = String(totalBill)
+            destinationVC.numGuestsLabel = String(numberOfPartyMembers)
+            destinationVC.tipPctLabel = String(tipPct)
+        }
     }
 }
 
